@@ -26,7 +26,6 @@
 //const listItem = deleteButton.closest('.places__item');
 //listItem.remove();
 //});
-//
 
 const ulHtml = document.querySelector('.places__list');
 const template = document.querySelector('#card-template').content;
@@ -38,11 +37,11 @@ initialCards.forEach(function (item) {
     ulHtml.append(t)
 });
 
-  const deleteButton = document.querySelectorAll('.card__delete-button')
+  const btn = document.querySelectorAll('.card__delete-button')
 
-  deleteButton.forEach(function(btn) {
-    deleteButton.addEventListener('click', function () {
-    const listItem = deleteButton.closest('.places__item');
+  btn.forEach(function(btn) {
+    btn.addEventListener('click', function () {
+    const listItem = btn.closest('.places__item');
     listItem.remove();
     })
   });
