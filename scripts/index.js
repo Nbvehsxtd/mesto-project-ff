@@ -1,49 +1,21 @@
-// @todo: Темплейт карточки
-
-// @todo: DOM узлы
-
-// @todo: Функция создания карточки
-     
-// @todo: Функция удаления карточки
-
-// @todo: Вывести карточки на страницу
-
-////////////////////////////////////////////////////////////////////
-
-//const ulHtml = document.querySelector('.places__list');
-//const template = document.querySelector('#card-template').content;
-
-//initialCards.forEach(function (element) {
-//const t = template.cloneNode(true);
-//t.querySelector('.card__title').textContent = element.name;
-//t.querySelector('.card__image').src = element.link;
-//ulHtml.append(t)
-//});
-
-//const deleteButton = document.querySelector('.card__delete-button');
-
-//deleteButton.addEventListener('click', function () {
-//const listItem = deleteButton.closest('.places__item');
-//listItem.remove();
-//});
-
-const ulHtml = document.querySelector('.places__list');
-const template = document.querySelector('#card-template').content;
-
+const placesList = document.querySelector('.places__list');
+const template = document.querySelector('#card-template').content; 
 initialCards.forEach(function (item) {
-    const t = template.cloneNode(true);
-    t.querySelector('.card__title').textContent = item.name;
-    t.querySelector('.card__image').src = item.link;
-    ulHtml.append(t)
+const name = item.name;
+const link = item.link;
+addCard(name, link);
 });
 
-  const btn = document.querySelectorAll('.card__delete-button')
-
-  btn.forEach(function(btn) {
-    btn.addEventListener('click', function () {
-    const listItem = btn.closest('.places__item');
-    listItem.remove();
-    })
-  });
-
-
+function addCard(name, link) {
+    const card = template.cloneNode(true);
+    card.querySelector('.card__title').textContent = name;
+    card.querySelector('.card__image').src = link;
+    card.querySelector('.card__image').alt = name + ', фото';
+    placesList.append(card);
+};
+  
+document.querySelector('body').onclick = function(e) {
+    if(e.target.className != 'card__delete-button') return;
+    const item = e.target.closest('.places__item');
+    item.remove();
+};
